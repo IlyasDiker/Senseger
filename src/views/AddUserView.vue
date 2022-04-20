@@ -1,15 +1,9 @@
 <template>
-  <div class="home">
+  <div class="AddUser">
+    <h1>List users</h1>
     <ul>
       <template v-for="(item, index) in users" :key="index">
-        <li>
-          <span>{{item.name}}</span>
-          <ul>
-            <li><button>Kiss</button></li>
-            <li><button>Hug</button></li>
-            <li><button>Pinch</button></li>
-          </ul>  
-        </li>
+        <li>{{item.name}} <button>Add</button></li>
       </template>
     </ul>
   </div>
