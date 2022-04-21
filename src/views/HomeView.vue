@@ -1,4 +1,5 @@
 <template>
+
   <div class="home">
     <ul>
       <template v-for="(item, index) in users" :key="index">
@@ -20,8 +21,7 @@ import { getUsers } from '@/api';
 export default {
   data () {
     return {
-      users: null,
-      
+      users: null
     }
   },
   async created () {

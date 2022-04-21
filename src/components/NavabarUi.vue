@@ -19,14 +19,25 @@
                     <span class="material-icons-outlined">settings</span>
                 </li>
             </router-link>
+            <router-link to="/profile" v-if="userSession">
+                <li class="Navbar_item" :class="this.$route.name == 'profile' ? 'active' : ''">
+                    <img :src="userSession.avatar" alt="">
+                </li>
+            </router-link>
         </ul>
     </nav>
 </template>
 
 <script>
+import { getSession } from '@/data'
 export default {
-  created () {
-
+  data () {
+    return {
+        userSession: getSession()
+    }
+  },
+  mounted () {
+      this.userSession = getSession();
   },
     
 }
@@ -72,6 +83,18 @@ $btn-gap: 20px;
         color: white;
         border-radius: 50%;
         transition: 0.2s ease-in-out;
+        overflow: hidden;
+        img{
+            position: relative;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            inset: 0;
+            widows: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
         &:hover{
             background: var(--neutral-600);
             border-radius: 40%;

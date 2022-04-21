@@ -1,41 +1,50 @@
 <template>
-  <div class="profile">
-    <h1>User Profile</h1>
+  <div class="flex-col py-4 px-3">
+      <div class="container">
+          <header-block :title="UserProfile.username" />
+          <div class="profile mt-5 mx-3">
+            <h1>User Profile</h1>
 
-    <form>
-      <div class="input-wrapper">
-        <div class="input-head">
-          <label for="">Id</label>
-        </div>
-        <div class="input-main">
-          <input type="text" v-model="UserProfile.id" readonly>
-        </div>
-      </div>
-      <div class="input-wrapper">
-        <div class="input-head">
-          <label for="">Name</label>
-        </div>
-        <div class="input-main">
-          <input type="text" v-model="UserProfile.name">
-        </div>
-      </div>
-      <div class="input-wrapper">
-        <div class="input-head">
-          <label for="">Token</label>
-        </div>
-        <div class="input-main">
-          <input type="text" v-model="UserProfile.token" readonly>
-        </div>
-      </div>
+            <form>
+              <div class="input-wrapper">
+                <div class="input-head">
+                  <label for="">Id</label>
+                </div>
+                <div class="input-main">
+                  <input type="text" v-model="UserProfile.id" readonly>
+                </div>
+              </div>
+              <div class="input-wrapper">
+                <div class="input-head">
+                  <label for="">Name</label>
+                </div>
+                <div class="input-main">
+                  <input type="text" v-model="UserProfile.username">
+                </div>
+              </div>
+              <div class="input-wrapper">
+                <div class="input-head">
+                  <label for="">Token</label>
+                </div>
+                <div class="input-main">
+                  <input type="text" v-model="UserProfile.token" readonly>
+                </div>
+              </div>
 
-    </form>
-    <button @click="logout()">Logout</button>
+            </form>
+            <button @click="logout()">Logout</button>
+          </div>
+      </div>
   </div>
+
+  
 </template>
 
 <script>
 import { getSession, logoutAccount } from '@/data'
+import HeaderBlock from '@/components/Blocks/HeaderBlock.vue';
 export default {
+  components: { HeaderBlock },
   methods: {
     logout(){
       logoutAccount();
@@ -52,7 +61,6 @@ export default {
     }
   },
   async mounted() {
-    console.log(await getSession());
     this.UserProfile = await getSession();
   },
   

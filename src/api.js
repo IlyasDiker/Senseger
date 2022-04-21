@@ -4,6 +4,7 @@ export const API = {
     host:`https://62607f5153a42eaa07057e9e.mockapi.io/`
 }
 
+
 export const getUsers = async () => {
     let ModelName = 'users';
 
@@ -17,6 +18,17 @@ export const getUser = async (index) => {
 
     if(index && typeof index == 'number') {
         let res = await axios.get(`${API.host}${ModelName}/${index}`);
+        let dataList = res.data;
+        return dataList ? dataList : [];
+    } else {
+        return null;
+    } 
+}
+
+export const createUser = async (user) => {
+    let ModelName = 'users';
+    if(user) {
+        let res = await axios.post(`${API.host}${ModelName}`, user);
         let dataList = res.data;
         return dataList ? dataList : [];
     } else {

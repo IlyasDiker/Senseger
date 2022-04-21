@@ -13,9 +13,6 @@
           </div>
           <div class="AuthSection_body">
             <div class="input-wrapper">
-              <!-- <div class="input-head">
-                <label for="">Your email or phone number</label>
-              </div> -->
               <div class="input-main">
                 <input type="text" placeholder="Your email or username" v-model="Form.login">
               </div>
@@ -37,8 +34,9 @@
 </template>
 
 <script>
-import { authDiscord } from '@/data';
+import { authDiscord, getDiscordProfile, setAccount } from '@/data';
 import router from '@/router';
+import { createUser } from '@/api';
 export default {
   data () {
     return {
@@ -50,11 +48,20 @@ export default {
   async created () {
     const fragment = new URLSearchParams(window.location.search);
     let code = fragment.get('code');
-    console.log(code);
     if(code){
       let authed = await authDiscord(code);
       if(authed){
-        router.push('/')
+        let discordProfile = await getDiscordProfile();
+        let account = await createUser({
+          id: discordProfile.id,
+          username: discordProfile.username,
+          avatar: discordProfile.avatar_url,
+          discordData : discordProfile
+        })
+        setAccount(account);
+        setTimeout(()=>{
+          router.push('/');
+        })
       }
     }
   },

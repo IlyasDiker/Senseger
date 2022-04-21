@@ -23,8 +23,6 @@ export const authDiscord = async (code) => {
             },
         });
         const oauthData = await oauthResult.json();
-        console.log(oauthData);
-
         localStorage.setItem('DISCORD.LOGIN' , JSON.stringify(oauthData));
         return oauthData;
     } catch (error) {
@@ -36,7 +34,7 @@ export const authDiscord = async (code) => {
 export const getDiscordProfile = async () => {
     let discord_auth = JSON.parse(localStorage.getItem('DISCORD.LOGIN'));
 
-    fetch('https://discord.com/api/users/@me', {
+    return await fetch('https://discord.com/api/users/@me', {
         headers: {
             authorization: `${discord_auth.token_type} ${discord_auth.access_token}`,
         },
@@ -44,7 +42,6 @@ export const getDiscordProfile = async () => {
     .then(result => result.json())
     .then(response => {
         response.avatar_url = `https://cdn.discordapp.com/avatars/${response.id}/${response.avatar}`;
-        console.log(response);
         return response;
     })
     .catch(console.error);
