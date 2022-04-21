@@ -12,16 +12,16 @@
       <router-view />
     </template>
     <template v-else>
-      <form>
+      <form @submit.prevent="login()">
         <div class="input-wrapper">
           <div class="input-head">
             <label for="">Login</label>
           </div>
           <div class="input-main">
-            <input type="text" v-model="Form.login">
+            <input type="text" v-model="Form.login" required>
           </div>
         </div>
-        <button @click="">login</button>
+        <button role="submit">login</button>
       </form>
     </template>
   </template>
@@ -32,6 +32,19 @@ import { getUser } from './api';
 import { getAccount, setAccount, setSession } from './data'
 
 export default {
+  methods: {
+    async login(){
+      let user = await getUser(parseInt(this.Form.login));
+      if (user) {
+        this.Account = user;
+        setSession(user);
+        setAccount(user);
+      } else {
+        window.alert('wrong password');
+        this.Form.login = '';
+      }
+    }
+  },
   data () {
     return {
       Account: null,
@@ -43,7 +56,7 @@ export default {
   },
   async created () {
     let acnt = await getAccount();
-    if(acnt){
+    if(acnt && acnt.id){
       console.log('found accnt', acnt);
       let user = await getUser(parseInt(acnt.id));
       if(user){

@@ -27,20 +27,21 @@
           <input type="text" v-model="UserProfile.token" readonly>
         </div>
       </div>
-      <div class="input-wrapper">
-        <div class="input-head">
-          <label for="">Name</label>
-        </div>
-        <div class="input-main">
-          <input type="text" v-model="UserProfile.name">
-        </div>
-      </div>
+
     </form>
+    <button @click="logout()">Logout</button>
   </div>
 </template>
 
 <script>
+import { getSession, logoutAccount } from '@/data'
 export default {
+  methods: {
+    logout(){
+      logoutAccount();
+      this.$router.push('/');
+    }
+  },
   data () {
     return {
       UserProfile: {
@@ -50,7 +51,9 @@ export default {
       }
     }
   },
-  created () {
+  async mounted() {
+    console.log(await getSession());
+    this.UserProfile = await getSession();
   },
   
 }

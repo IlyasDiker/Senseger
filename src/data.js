@@ -14,8 +14,14 @@ export const getAccount = async () => {
 }
 
 export const setAccount = async (data) => {
+    _inner.sessionAccount = data;
     localStorage.setItem(_inner.ACCOUNT_KEY, JSON.stringify(data));
     return data;
+}
+
+export const logoutAccount = () => {
+    _inner.sessionAccount = null;
+    localStorage.removeItem(_inner.ACCOUNT_KEY);
 }
 
 export const setSession = (account) => {
@@ -24,9 +30,10 @@ export const setSession = (account) => {
     }
 }
 export const getSession = () => {
-    return _inner.sessionAccountt;
+    return _inner.sessionAccount;
 }
 
 
 window.getAccount = getAccount;
 window.setAccount = setAccount;
+window.getSession = getSession;

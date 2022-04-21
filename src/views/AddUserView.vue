@@ -19,7 +19,6 @@ export default {
   },
   async created () {
     this.users = await getUsers();
-    console.log(this.users);
   },
   name: "HomeView",
   components: {
