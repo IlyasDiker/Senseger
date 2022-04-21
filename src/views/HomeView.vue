@@ -20,12 +20,13 @@ import { getUsers } from '@/api';
 export default {
   data () {
     return {
-      users: null
+      users: null,
+      
     }
   },
   async created () {
     this.users = await getUsers();
-    console.log(this.users);
+
   },
   name: "HomeView",
   components: {

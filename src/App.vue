@@ -3,35 +3,22 @@
     LOADING
   </template>
   <template v-else>
-    <template v-if="Account">
-      <nav>
-        <router-link to="/">Home</router-link> |
-        <router-link to="/add">Add User</router-link> |
-        <router-link to="/profile">Profile</router-link>
-      </nav>
-      <router-view />
-    </template>
-    <template v-else>
-      <form @submit.prevent="login()">
-        <div class="input-wrapper">
-          <div class="input-head">
-            <label for="">Login</label>
-          </div>
-          <div class="input-main">
-            <input type="text" v-model="Form.login" required>
-          </div>
+      <div class="app-layout">
+        <navabar-ui />
+        <div class="app-layout_router">
+          <router-view />
         </div>
-        <button role="submit">login</button>
-      </form>
-    </template>
+      </div>
   </template>
 </template>
 
 <script>
 import { getUser } from './api';
 import { getAccount, setAccount, setSession } from './data'
+import NavabarUi from '@/components/NavabarUi.vue';
 
 export default {
+  components: { NavabarUi },
   methods: {
     async login(){
       let user = await getUser(parseInt(this.Form.login));
@@ -71,29 +58,9 @@ export default {
     }
   },
   
-  
 }
 </script>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+<style lang="scss">
+@import '@/sass/global.scss';
 </style>

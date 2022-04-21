@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+}
+
+html{
+    scroll-behavior: smooth;
+    scroll-padding: 120px 0 0 0;
+}
+
+.app-layout{
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: var(--neutral-800);
+    color: white;
+    &_router{
+        flex-grow: 1;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+    }
+}
+
+a{
+    text-decoration: none
+}
+
+.material-icons{
+    vertical-align: text-bottom;
+}
+
+@import 'grid';
+@import 'colors';
+@import 'layout';
+@import 'spacing';
+@import 'typography';
+
+.bg-white{
+    background: white;
+}
+.bg-black{
+    background: black;
+}
+
+.no-scroll{
+	overflow: hidden !important;
+}
+
+.w-100{
+    width: 100%;
+}
+.w-fc{
+    width: fit-content;
+}
+.h-100{
+    height: 100%;
+}
+.h-fc{
+    height: fit-content;
+}
+
+.flex-col{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}
+.flex-center{
+    align-items: center;
+    justify-content: center;
+}
+.align-center{
+    align-items: center;
+}
+.justify-center{
+    justify-content: center;
+}
+.justify-end{
+    justify-content: flex-end;
+}
+.space-between{
+    justify-content: space-between;
+}
+.flex-grow-1{
+    flex-grow: 1;
+}
+.gap-5{
+    gap: 5px;
+}
+.gap-10{
+    gap: 10px;
+}
+.gap-15{
+    gap: 15px;
+}
+.gap-20{
+    gap: 20px;
+}
+
+.display-none{
+    display: none;
+}
+
+
+.op-0{opacity: 0;}
+.op-1{opacity: .1;}
+.op-2{opacity: .2;}
+.op-3{opacity: .3;}
+.op-4{opacity: .4;}
+.op-5{opacity: .5;}
+.op-6{opacity: .6;}
+.op-7{opacity: .7;}
+.op-8{opacity: .8;}
+.op-9{opacity: .9;}
+.op-10{opacity: 1;}
