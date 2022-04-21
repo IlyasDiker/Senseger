@@ -55,6 +55,11 @@ export default {
       }
     } else {
       this.isLoading = false;
+      // console.log('no account');
+      //   console.log(this.$route.name);
+      // if(this.route.name != 'login') {
+      //   router.push('/login');
+      // } 
     }
   },
   

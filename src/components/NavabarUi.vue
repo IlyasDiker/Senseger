@@ -47,9 +47,9 @@ $btn-gap: 20px;
     transition: 0.4s ease-in-out;
 
     &.disabled{
-        opacity: 0.5;
+        opacity: 0.6;
         pointer-events: none;
-        filter: blur(10px);
+        filter: blur(8px);
     }
 
     ul{
