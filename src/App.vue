@@ -36,7 +36,9 @@ export default {
     }
   },
   async created () {
-    
+    this.$bus.on('ad', ()=>{
+      console.log('test ad');
+    })
   },
   async mounted() {
     let acnt = await getAccount();

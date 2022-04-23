@@ -25,7 +25,7 @@
               Discord
             </a>
             <button disabled>Google</button>
-            <button disabled>Facebook</button>
+            <button @click="test">Facebook</button>
             <button class="main_action" :class="Form.login ? 'active' : ''">Login</button>
           </div>
         </div>
@@ -38,6 +38,11 @@ import { authDiscord, getDiscordProfile, setAccount } from '@/data';
 import router from '@/router';
 import { createUser } from '@/api';
 export default {
+  methods: {
+    test() {
+      this.$bus.emit('ad')
+    }
+  },
   data () {
     return {
       Form : {
