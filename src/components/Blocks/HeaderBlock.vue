@@ -2,7 +2,7 @@
     <section class="HeroSection">
         <img :src="asset" alt="" class="HeroSection_background">
         <h1 class="text-3xl fw-400">{{title}}</h1>
-        <span>{{description}}</span>
+        <span class="text-sm fw-300 op-7">{{description}}</span>
     </section>
 </template>
 
@@ -24,6 +24,9 @@ export default {
         padding: 60px 40px 40px 40px;
         border-radius: 40px;
         position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
 
         &_background{
             position: absolute;

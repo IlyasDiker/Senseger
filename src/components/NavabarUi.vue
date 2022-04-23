@@ -9,8 +9,8 @@
             </router-link>
             <router-link to="/add">
                 <li class="Navbar_item" :class="this.$route.name == 'add' ? 'active' : ''">
-                    <span class="material-icons">photo_camera</span>
-                    <span class="material-icons-outlined">photo_camera</span>
+                    <span class="material-icons">person_add</span>
+                    <span class="material-icons-outlined">person_add</span>
                 </li>
             </router-link>
             <router-link to="/settings">
@@ -24,13 +24,25 @@
                     <img :src="userSession.avatar" alt="">
                 </li>
             </router-link>
+            <li class="Navbar_item logout" @click="logout">
+                <span class="material-icons">logout</span>
+                <span class="material-icons-outlined">logout</span>
+            </li>
         </ul>
     </nav>
 </template>
 
 <script>
-import { getSession } from '@/data'
+import { getSession, logoutAccount } from '@/data'
+import router from '@/router'
 export default {
+  methods: {
+    logout () { 
+        logoutAccount();
+        this.userSession = getSession();
+        router.push('login');
+    },
+  },
   data () {
     return {
         userSession: getSession()

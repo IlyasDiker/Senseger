@@ -11,6 +11,7 @@
     "axios": "^0.26.1",
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
+    "vue-bus": "^1.2.1",
     "vue-router": "^4.0.3"
   },
   "devDependencies": {
@@ -24,8 +25,8 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.0.3",
+    "prettier": "^2.4.1",
     "sass": "^1.49.11",
-    "sass-loader": "^12.6.0",
-    "prettier": "^2.4.1"
+    "sass-loader": "^12.6.0"
   }
 }

@@ -39,6 +39,11 @@ html{
         align-items: center;
         background: rgba(0, 0, 0, 0.5);
         backdrop-filter: blur(10px);
+        button{
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+        }
     }
 }
 

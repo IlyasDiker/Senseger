@@ -9,7 +9,7 @@
           <router-view />
           <div class="app-layout_disabled" v-if="!Account && $route.name != 'login'">
             <router-link to="/login">
-              <button>got to login</button>
+              <button>Go to login</button>
             </router-link>
           </div>
         </div>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { getAccount, setAccount, setSession } from './data'
+import { getAccount, getSession, setAccount, setSession } from './data'
 import NavabarUi from '@/components/NavabarUi.vue';
 
 export default {
@@ -28,7 +28,7 @@ export default {
   },
   data () {
     return {
-      Account: null,
+      Account: getSession(),
       Form: {
         login: ''
       },
@@ -36,24 +36,21 @@ export default {
     }
   },
   async created () {
+    
+  },
+  async mounted() {
     let acnt = await getAccount();
     if(acnt && acnt.id){
       console.log('found accnt', acnt);
-      // let user = await getUser(parseInt(acnt.id));
-      // if(user){
-      //   console.log('logged');
-        this.isLoading = false;
-        this.Account = acnt;
-        setSession(acnt);
-        setAccount(acnt);
-      // }
+      this.isLoading = false;
+      setSession(acnt);
+      setAccount(acnt);
+      this.Account = getAccount();
     } else {
       this.isLoading = false;
       console.log('no account');
-      // if(this.route.name != 'login') {
-      //   router.push('/login');
-      // } 
     }
+
   },
   
 }
