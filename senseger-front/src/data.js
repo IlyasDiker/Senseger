@@ -3,7 +3,13 @@ const _inner = {
     CLIENT_ID : '966660189505859646',
     CLIENT_SECRET : 'pFe22lLgQlX42bCXS1Bz3jKhWr0eA3qT',
 
+    DISCORD_AUTH_LINK: "https://discord.com/api/oauth2/authorize?client_id=966660189505859646&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Flogin&response_type=code&scope=identify%20email",
+
     sessionAccount: null,
+}
+
+export const getDiscordAuthLink = () => {
+    return _inner.DISCORD_AUTH_LINK;
 }
 
 export const authDiscord = async (code) => {

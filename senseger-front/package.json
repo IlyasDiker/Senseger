@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.26.1",
     "core-js": "^3.8.3",
+    "pinia": "^2.0.13",
     "vue": "^3.2.13",
     "vue-bus": "^1.2.1",
     "vue-router": "^4.0.3"

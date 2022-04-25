@@ -21,7 +21,7 @@
         </div>
         <div class="AuthSection">
           <div class="AuthSection_footer">
-            <a href="https://discord.com/api/oauth2/authorize?client_id=966660189505859646&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Flogin&response_type=code&scope=identify">
+            <a :href="AuthLink">
               Discord
             </a>
             <button disabled>Google</button>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { authDiscord, getDiscordProfile, setAccount } from '@/data';
+import { authDiscord, getDiscordAuthLink, getDiscordProfile, setAccount } from '@/data';
 import router from '@/router';
 import { createUser } from '@/api';
 export default {
@@ -45,12 +45,15 @@ export default {
   },
   data () {
     return {
+      AuthLink: null,
       Form : {
         login: ''
       }
     }
   },
   async created () {
+    this.AuthLink = getDiscordAuthLink();
+
     const fragment = new URLSearchParams(window.location.search);
     let code = fragment.get('code');
     if(code){
