@@ -10,7 +10,7 @@ datasource db {
 model User {
   id          Int          @id @default(autoincrement())
   email       String       @unique
-  password    String
+  password    String?
   discordauth String?
   avatar      String?
   username    String?
@@ -22,11 +22,11 @@ model User {
 }
 
 model UserOnUser {
-  child        User   @relation("following", fields: [childId], references: [id])
+  child        User @relation("followedBy", fields: [childId], references: [id])
   childId      Int
-  parent       User   @relation("followedBy", fields: [parentId], references: [id])
+  parent       User @relation("following", fields: [parentId], references: [id])
   parentId     Int
-  realtionType String
+  realtionType Int  @default(0)
 
   @@id([childId, parentId])
 }

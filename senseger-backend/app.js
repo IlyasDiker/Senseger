@@ -31,13 +31,14 @@ app.post('/auth/register', async (req, res) => {
 				}
 			})
 			if (x) {
+				delete x.password;
 				res.send({ data: x });
 			} else {
 				res.send({ error: "Error Occured" });
 			}
 
 		} catch (error) {
-
+			res.send({ error: error.message });
 		}
 	}
 });
@@ -53,19 +54,68 @@ app.post('/auth/login', async (req, res) => {
 			if(x){
 				console.log(`[INFO] : [AUTH] User ${x.email} LoggedIn`);
 				if (x.password == req.body.password) {
+					delete x.password;
 					res.send({ data: x });
 				} else {
-					res.send({ error: "Error Occured" });
+					res.send({ error: "Wrong Credentials" });
 				}
 			} else {
 				res.send({ error: "No User Found" });
 			}
 
 		} catch (error) {
-
+			res.send({ error: error.message });
 		}
 	}
 });
+
+app.post('/addfriend', async (req, res) =>{
+	if(req.body.parent && req.body.child) {
+		try {
+			let x = await prisma.userOnUser.create({
+				data:{
+					childId : req.body.child,
+					parentId : req.body.parent,
+					realtionType : req.body.realtionType || 0,
+				}
+			})
+			res.send({ data: x });
+		} catch (error) {
+			res.send({ error: error.message });
+		}
+	} else {
+		res.send({ error: "Missing parameters" });
+	}
+})
+
+app.post('/acceptfriend', async (req, res) =>{
+	if(req.body.parent && req.body.child) {
+		try {
+			let x = await prisma.userOnUser.updateMany({
+				where:{
+					childId : req.body.child,
+					parentId : req.body.parent,
+				},
+				data: {
+					realtionType : req.body.realtionType || 1,
+				}
+			})
+			let y = await prisma.userOnUser.create({
+				data:{
+					childId : req.body.parent,
+					parentId : req.body.child,
+					realtionType : req.body.realtionType || 1,
+				}
+			})
+			res.send({ data: x , data2: y});
+		} catch (error) {
+			res.send({ error: error.message });
+		}
+	} else {
+		res.send({ error: "Missing parameters" });
+	}
+})
+
 
 
 
